@@ -2,7 +2,7 @@ const joi = require('joi')
 
 const signupValidation = (req,res,next) => {
     const schema = joi.object({
-      name: joi.string().max(100).min(4).required().unique(),
+      name: joi.string().max(100).min(4).required(),
       email: joi.string().email().required(),
       password: joi.string().max(100).min(4).required(),
     });
@@ -10,8 +10,7 @@ const signupValidation = (req,res,next) => {
     if(error){
         return res.status(400).json({message: "bad json file", error})
     }
-
-    next;
+    next();
 }
 const loginValidation = (req,res,next) => {
     const schema = joi.object({
@@ -22,8 +21,7 @@ const loginValidation = (req,res,next) => {
     if(error){
         return res.status(400).json({message: "bad json file", error})
     }
-
-    next;
+    next();
 }
 
 module.exports= {
